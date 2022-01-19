@@ -1,3 +1,4 @@
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +15,7 @@ public class GoogleSearchTest {
 
     @BeforeClass
     public static void setupWebDriver() {
-        System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/src/main/resources/chromedriver.exe");
+        WebDriverManager.chromedriver().setup();
     }
     @BeforeMethod
     public void setup(){
@@ -29,7 +30,6 @@ public class GoogleSearchTest {
         driver.findElement(By.name("q")).clear();
         driver.findElement(By.name("q")).sendKeys("perficient"
                 + Keys.RETURN);
-        //driver.findElement(By.name("btnK")).click();
         driver.findElement(By.id("rso")).findElements(By.xpath("/*")).get(0).findElement(By.tagName("h3")).click();
         Assert.assertTrue(driver.getTitle().contains("Perficient"));
     }
