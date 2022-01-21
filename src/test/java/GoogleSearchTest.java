@@ -3,6 +3,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -19,7 +20,11 @@ public class GoogleSearchTest {
     }
     @BeforeMethod
     public void setup(){
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @Test (description = "This test is in charge of redirecting to the google website and searching for an specified subject")
@@ -31,11 +36,11 @@ public class GoogleSearchTest {
         driver.findElement(By.name("q")).sendKeys("perficient"
                 + Keys.RETURN);
         driver.findElement(By.id("rso")).findElements(By.xpath("/*")).get(0).findElement(By.tagName("h3")).click();
-        Assert.assertTrue(driver.getTitle().contains("Perficient"));
+        Assert.assertTrue(driver.getTitle().contains("perficient"));
     }
 
     @AfterMethod
     public void destroy(){
-        driver.close();
+        driver.quit();
     }
 }
