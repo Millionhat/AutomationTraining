@@ -15,9 +15,7 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: browser-actions/setup-chrome@latest
     - run: chrome --version
@@ -29,3 +27,6 @@ jobs:
         distribution: 'zulu'
     - name: Build with Gradle
       run: ./gradlew test --info # Run our tests using Gradle
+    - uses: EnricoMi/publish-unit-test-result-action@v1
+      with:
+        files: AutomationReport/GoogleSearchTest/*.xml
