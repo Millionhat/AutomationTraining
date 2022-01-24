@@ -3,6 +3,9 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * Object class for the Log In page.
+ */
 public class SaucedomoLogInPage {
 
   public void visitLogin(WebDriver driver) {

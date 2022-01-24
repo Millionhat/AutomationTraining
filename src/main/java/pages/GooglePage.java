@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 
+/**
+ * Object class for the google webpage.
+ */
 public class GooglePage {
 
   public void goToGoogle(WebDriver driver) {
