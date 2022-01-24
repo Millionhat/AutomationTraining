@@ -6,4 +6,9 @@
             <class name="GoogleSearchTest"></class>
         </classes>
     </test>
+    <test name="Buy T-Shirt">
+        <classes>
+            <class name="BuyTshirtProcessTest"></class>
+        </classes>
+    </test>
 </suite>
