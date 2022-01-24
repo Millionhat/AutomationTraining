@@ -8,7 +8,7 @@
     </test>
     <test name="Buy T-Shirt">
         <classes>
-            <class name="BuyTShirtTest"></class>
+            <class name="BuyTshirtProcessTest"></class>
         </classes>
     </test>
 </suite>

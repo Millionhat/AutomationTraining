@@ -35,7 +35,7 @@ public class BuyTshirtProcessTest {
 
   @Test(description = "This test is in charge of navigating through the webpage and"
       + "simulating the process of acquisition for a t-shirt")
-  public void BuyTshirtTest() {
+  public void buyTshirtTest() {
     driver.get("https://www.saucedemo.com/");
     driver.findElement(By.id("user-name")).sendKeys("standard_user");
     driver.findElement(By.id("password")).sendKeys("secret_sauce");
