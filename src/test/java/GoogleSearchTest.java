@@ -10,13 +10,16 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.GooglePage;
 
 /**
  * Test class in charge of evaluating a google search using the Selenium Library.
  */
 public class GoogleSearchTest {
 
+  private GooglePage google= new GooglePage();
   private WebDriver driver;
+
 
   @BeforeClass
   public static void setupWebDriver() {
@@ -39,15 +42,14 @@ public class GoogleSearchTest {
       + "to the google website and searching for an specified subject")
   public void searchAtGoogle() {
     Reporter.log("The chrome version being used is the latest available on the linux repo");
-    driver.get("https://www.google.com/");
-    driver.findElement(By.name("q")).sendKeys("mjolnir" + Keys.RETURN);
+    google.goToGoogle(driver);
+
+    google.googleSearch(driver,"Mjolnir");
     Reporter.log("First search task completed");
-    driver.findElement(By.name("q")).clear();
-    driver.findElement(By.name("q")).sendKeys("perficient"
-        + Keys.RETURN);
+
+    google.googleSearch(driver,"perficient");
     Reporter.log("Second search task completed");
-    driver.findElement(By.id("rso")).findElements(By.xpath("/*"))
-      .get(0).findElement(By.tagName("h3")).click();
+
     Assert.assertTrue(driver.getTitle().contains("perficient"));
   }
 

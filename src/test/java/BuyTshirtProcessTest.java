@@ -8,12 +8,17 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.*;
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
  */
 public class BuyTshirtProcessTest {
-
+  private SaucedomoLogInPage logIn= new SaucedomoLogInPage();
+  private SaucedomoCatalogPage catalog = new SaucedomoCatalogPage();
+  private SaucedomoShoppingCartPage shoppingCart= new SaucedomoShoppingCartPage();
+  private SaucedomoCheckOutPage checkOut = new SaucedomoCheckOutPage();
+  private SaucedomoVerificationPage verification = new SaucedomoVerificationPage();
   private WebDriver driver;
 
   @BeforeClass
@@ -36,18 +41,23 @@ public class BuyTshirtProcessTest {
   @Test(description = "This test is in charge of navigating through the webpage and"
       + "simulating the process of acquisition for a t-shirt")
   public void buyTshirtTest() {
-    driver.get("https://www.saucedemo.com/");
-    driver.findElement(By.id("user-name")).sendKeys("standard_user");
-    driver.findElement(By.id("password")).sendKeys("secret_sauce");
-    driver.findElement(By.id("login-button")).click();
-    driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-    driver.findElement(By.id("shopping_cart_container")).click();
-    driver.findElement(By.id("checkout")).click();
-    driver.findElement(By.id("first-name")).sendKeys("Juan");
-    driver.findElement(By.id("last-name")).sendKeys("Palma");
-    driver.findElement(By.id("postal-code")).sendKeys("77901");
-    driver.findElement(By.id("continue")).click();
-    driver.findElement(By.id("finish")).click();
+    logIn.visitLogin(driver);
+    logIn.fillUserName(driver);
+    logIn.fillPassword(driver);
+    logIn.submitInfo(driver);
+
+    catalog.selectItem(driver);
+    catalog.goToShoppingCart(driver);
+
+    shoppingCart.goToCheckOut(driver);
+
+    checkOut.fillOutName(driver);
+    checkOut.fillOutLastName(driver);
+    checkOut.fillOutPostalCode(driver);
+    checkOut.proceedToVerification(driver);
+
+    verification.finishProcess(driver);
+
     Assert.assertNotNull(driver.findElement(By.id("checkout_complete_container")));
     Assert.assertTrue(driver.findElement(By.id("checkout_complete_container"))
         .findElement(By.className("complete-header")).getText().contains("THANK YOU"));
