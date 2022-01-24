@@ -12,12 +12,12 @@ import org.testng.annotations.Test;
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
  */
-public class BuyTShirtTest {
+public class BuyTshirtProcessTest {
 
   private WebDriver driver;
 
   @BeforeClass
-  public static void setupWebDriver(){
+  public static void setupWebDriver() {
     WebDriverManager.chromedriver().setup();
   }
 
@@ -25,7 +25,7 @@ public class BuyTShirtTest {
    * This method is in charge of setting up the chrome driver for the test.
    */
   @BeforeMethod
-  public void setup(){
+  public void setup() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--no-sandbox");
     options.addArguments("--disable-dev-shm-usage");
@@ -33,9 +33,9 @@ public class BuyTShirtTest {
     driver = new ChromeDriver(options);
   }
 
-  @Test(description="This test is in charge of navigating through the webpage and"
+  @Test(description = "This test is in charge of navigating through the webpage and"
       + "simulating the process of acquisition for a t-shirt")
-  public void BuyTShirtTest() {
+  public void BuyTshirtTest() {
     driver.get("https://www.saucedemo.com/");
     driver.findElement(By.id("user-name")).sendKeys("standard_user");
     driver.findElement(By.id("password")).sendKeys("secret_sauce");
@@ -49,11 +49,12 @@ public class BuyTShirtTest {
     driver.findElement(By.id("continue")).click();
     driver.findElement(By.id("finish")).click();
     Assert.assertNotNull(driver.findElement(By.id("checkout_complete_container")));
-    Assert.assertTrue(driver.findElement(By.id("checkout_complete_container")).findElement(By.className("complete-header")).getText().contains("THANK YOU"));
+    Assert.assertTrue(driver.findElement(By.id("checkout_complete_container"))
+        .findElement(By.className("complete-header")).getText().contains("THANK YOU"));
   }
 
   @AfterMethod
-  public void destroy(){
+  public void destroy() {
     driver.quit();
   }
 }
