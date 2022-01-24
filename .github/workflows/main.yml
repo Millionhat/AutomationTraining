@@ -31,3 +31,4 @@ jobs:
       with:
         files: build/test-results/**/**/*.xml
         report_individual_runs: true
+        summary: true
