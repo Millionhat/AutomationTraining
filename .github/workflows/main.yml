@@ -29,5 +29,4 @@ jobs:
       run: ./gradlew test --info # Run our tests using Gradle
     - uses: EnricoMi/publish-unit-test-result-action@v1
       with:
-        files: AutomationReport/**/*.xml
-               !AutomationReport/testng-results.xml
+        files: !AutomationReport/testng-results.xml  AutomationReport/**/*.xml
