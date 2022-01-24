@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.Reporter;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -18,6 +19,7 @@ public class GoogleSearchTest {
     public static void setupWebDriver() {
         WebDriverManager.chromedriver().setup();
     }
+
     @BeforeMethod
     public void setup(){
         ChromeOptions options = new ChromeOptions();
@@ -29,12 +31,15 @@ public class GoogleSearchTest {
 
     @Test (description = "This test is in charge of redirecting to the google website and searching for an specified subject")
     public void searchAtGoogle(){
+        Reporter.log("The chrome version being used is the latest available on the linux repo");
         driver.get("https://www.google.com/");
         driver.findElement(By.name("q")).sendKeys("mjolnir"
         + Keys.RETURN);
+        Reporter.log("First search task completed");
         driver.findElement(By.name("q")).clear();
         driver.findElement(By.name("q")).sendKeys("perficient"
                 + Keys.RETURN);
+        Reporter.log("Second search task completed");
         driver.findElement(By.id("rso")).findElements(By.xpath("/*")).get(0).findElement(By.tagName("h3")).click();
         Assert.assertTrue(driver.getTitle().contains("perficient"));
     }
