@@ -8,15 +8,19 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.*;
+import pages.SaucedomoVerificationPage;
+import pages.SaucedomoCheckOutPage;
+import pages.SaucedomoShoppingCartPage;
+import pages.SaucedomoLogInPage;
+import pages.SaucedomoCatalogPage;
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
  */
 public class BuyTshirtProcessTest {
-  private SaucedomoLogInPage logIn= new SaucedomoLogInPage();
+  private SaucedomoLogInPage logIn = new SaucedomoLogInPage();
   private SaucedomoCatalogPage catalog = new SaucedomoCatalogPage();
-  private SaucedomoShoppingCartPage shoppingCart= new SaucedomoShoppingCartPage();
+  private SaucedomoShoppingCartPage shoppingCart = new SaucedomoShoppingCartPage();
   private SaucedomoCheckOutPage checkOut = new SaucedomoCheckOutPage();
   private SaucedomoVerificationPage verification = new SaucedomoVerificationPage();
   private WebDriver driver;

@@ -17,7 +17,7 @@ import pages.GooglePage;
  */
 public class GoogleSearchTest {
 
-  private GooglePage google= new GooglePage();
+  private GooglePage google = new GooglePage();
   private WebDriver driver;
 
 
@@ -44,10 +44,10 @@ public class GoogleSearchTest {
     Reporter.log("The chrome version being used is the latest available on the linux repo");
     google.goToGoogle(driver);
 
-    google.googleSearch(driver,"Mjolnir");
+    google.googleSearch(driver ,"Mjolnir");
     Reporter.log("First search task completed");
 
-    google.googleSearch(driver,"perficient");
+    google.googleSearch(driver ,"perficient");
     Reporter.log("Second search task completed");
 
     Assert.assertTrue(driver.getTitle().contains("perficient"));

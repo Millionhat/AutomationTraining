@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 
 public class SaucedomoCatalogPage {
 
-  public void selectItem(WebDriver driver){
+  public void selectItem(WebDriver driver) {
     driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
   }
 
-  public void goToShoppingCart(WebDriver driver){
+  public void goToShoppingCart(WebDriver driver) {
     driver.findElement(By.id("shopping_cart_container")).click();
   }
 }
