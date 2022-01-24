@@ -1,0 +1,22 @@
+name: Code analysis with Checkstyle
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Run CheckStyle Analysis
+        uses: nikitasavinov/checkstyle-action@master
+        with:
+          reporter: 'github-pr-check'
+          tool_name: 'Static Code Analysis Tool'
+          level: 'error'
+          fail_on_error: true

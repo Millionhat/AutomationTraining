@@ -11,41 +11,48 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+/**
+ * Test class in charge of evaluating a google search using the Selenium Library.
+ */
 public class GoogleSearchTest {
 
-    private WebDriver driver;
+  private WebDriver driver;
 
-    @BeforeClass
-    public static void setupWebDriver() {
-        WebDriverManager.chromedriver().setup();
-    }
+  @BeforeClass
+  public static void setupWebDriver() {
+    WebDriverManager.chromedriver().setup();
+  }
 
-    @BeforeMethod
-    public void setup(){
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-    }
+  /**
+  * This method is in charge of setting up the chrome driver for the test.
+  */
+  @BeforeMethod
+  public void setup() {
+    ChromeOptions options = new ChromeOptions();
+    options.addArguments("--no-sandbox");
+    options.addArguments("--disable-dev-shm-usage");
+    options.addArguments("--headless");
+    driver = new ChromeDriver(options);
+  }
 
-    @Test (description = "This test is in charge of redirecting to the google website and searching for an specified subject")
-    public void searchAtGoogle(){
-        Reporter.log("The chrome version being used is the latest available on the linux repo");
-        driver.get("https://www.google.com/");
-        driver.findElement(By.name("q")).sendKeys("mjolnir"
+  @Test (description = "This test is in charge of redirecting "
+      + "to the google website and searching for an specified subject")
+  public void searchAtGoogle() {
+    Reporter.log("The chrome version being used is the latest available on the linux repo");
+    driver.get("https://www.google.com/");
+    driver.findElement(By.name("q")).sendKeys("mjolnir" + Keys.RETURN);
+    Reporter.log("First search task completed");
+    driver.findElement(By.name("q")).clear();
+    driver.findElement(By.name("q")).sendKeys("perficient"
         + Keys.RETURN);
-        Reporter.log("First search task completed");
-        driver.findElement(By.name("q")).clear();
-        driver.findElement(By.name("q")).sendKeys("perficient"
-                + Keys.RETURN);
-        Reporter.log("Second search task completed");
-        driver.findElement(By.id("rso")).findElements(By.xpath("/*")).get(0).findElement(By.tagName("h3")).click();
-        Assert.assertTrue(driver.getTitle().contains("perficient"));
-    }
+    Reporter.log("Second search task completed");
+    driver.findElement(By.id("rso")).findElements(By.xpath("/*"))
+      .get(0).findElement(By.tagName("h3")).click();
+    Assert.assertTrue(driver.getTitle().contains("perficient"));
+  }
 
-    @AfterMethod
-    public void destroy(){
-        driver.quit();
-    }
+  @AfterMethod
+  public void destroy() {
+    driver.quit();
+  }
 }
