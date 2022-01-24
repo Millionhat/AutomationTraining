@@ -30,3 +30,4 @@ jobs:
     - uses: EnricoMi/publish-unit-test-result-action@v1
       with:
         files: build/test-results/**/**/*.xml
+        report_individual_runs: true
