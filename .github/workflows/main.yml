@@ -27,7 +27,6 @@ jobs:
         distribution: 'zulu'
     - name: Build with Gradle
       run: ./gradlew test --info # Run our tests using Gradle
-    - uses: mikepenz/action-junit-report@v2
-      if: always()
+    - uses: scacap/action-surefire-report@v1
       with:
           report_paths: build/test-results/**/*.xml
