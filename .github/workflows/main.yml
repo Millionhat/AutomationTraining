@@ -27,6 +27,9 @@ jobs:
         distribution: 'zulu'
     - name: Build with Gradle
       run: ./gradlew test --info # Run our tests using Gradle
-    - uses: EnricoMi/publish-unit-test-result-action@v1
+    - uses: dorny/test-reporter@v1
+      if: success() || failure()    # run this step even if previous step failed
       with:
-        files: AutomationReport/**/*.xml
+        name: JEST Tests            # Name of the check run which will be created
+        path: build/test-results/**/**/*.xml    # Path to test results
+        reporter: jest-junit        # Format of test results
