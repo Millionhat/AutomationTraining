@@ -14,17 +14,17 @@ public class SaucedomoCheckOutPage {
 
   private WebDriver driver;
 
-    @FindBy(how = How.ID, using = "first-name")
-    private WebElement personName;
+  @FindBy(how = How.ID, using = "first-name")
+  private WebElement personName;
 
-    @FindBy(how = How.ID, using = "last-name")
-    private  WebElement personLastName;
+  @FindBy(how = How.ID, using = "last-name")
+  private  WebElement personLastName;
 
-    @FindBy(how = How.ID, using = "postal-code")
-    private WebElement postalCode;
+  @FindBy(how = How.ID, using = "postal-code")
+  private WebElement postalCode;
 
-    @FindBy(how = How.ID, using = "continue")
-    private WebElement continueButton;
+  @FindBy(how = How.ID, using = "continue")
+  private WebElement continueButton;
 
   public SaucedomoCheckOutPage(WebDriver driver) {
     this.driver = driver;

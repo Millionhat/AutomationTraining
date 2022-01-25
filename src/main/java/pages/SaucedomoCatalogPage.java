@@ -26,7 +26,7 @@ public class SaucedomoCatalogPage {
   }
 
   public void selectItem() {
-   addToCart.click();
+    addToCart.click();
   }
 
   public void goToShoppingCart() {
