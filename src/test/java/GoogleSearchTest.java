@@ -38,7 +38,7 @@ public class GoogleSearchTest {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
-    wdc= new WebDriverContainer(driver);
+    wdc = new WebDriverContainer(driver);
     google  = new GooglePage();
   }
 
