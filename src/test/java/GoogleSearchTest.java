@@ -10,13 +10,16 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.GooglePage;
 
 /**
  * Test class in charge of evaluating a google search using the Selenium Library.
  */
 public class GoogleSearchTest {
 
+  private GooglePage google;
   private WebDriver driver;
+
 
   @BeforeClass
   public static void setupWebDriver() {
@@ -33,22 +36,18 @@ public class GoogleSearchTest {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
+    google  = new GooglePage(driver);
   }
 
   @Test (description = "This test is in charge of redirecting "
       + "to the google website and searching for an specified subject")
   public void searchAtGoogle() {
     Reporter.log("The chrome version being used is the latest available on the linux repo");
-    driver.get("https://www.google.com/");
-    driver.findElement(By.name("q")).sendKeys("mjolnir" + Keys.RETURN);
-    Reporter.log("First search task completed");
-    driver.findElement(By.name("q")).clear();
-    driver.findElement(By.name("q")).sendKeys("perficient"
-        + Keys.RETURN);
-    Reporter.log("Second search task completed");
-    driver.findElement(By.id("rso")).findElements(By.xpath("/*"))
-      .get(0).findElement(By.tagName("h3")).click();
-    Assert.assertTrue(driver.getTitle().contains("perficient"));
+    google.goToGoogle();
+
+    google.search("perficient");
+    String title = google.getPageTitle();
+    Assert.assertTrue(title.contains("perficient"));
   }
 
   @AfterMethod

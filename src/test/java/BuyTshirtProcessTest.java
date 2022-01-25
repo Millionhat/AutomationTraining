@@ -8,12 +8,23 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.SaucedomoCatalogPage;
+import pages.SaucedomoCheckOutPage;
+import pages.SaucedomoCompletedOrderPage;
+import pages.SaucedomoLogInPage;
+import pages.SaucedomoShoppingCartPage;
+import pages.SaucedomoVerificationPage;
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
  */
 public class BuyTshirtProcessTest {
-
+  private SaucedomoLogInPage logIn;
+  private SaucedomoCatalogPage catalog;
+  private SaucedomoShoppingCartPage shoppingCart;
+  private SaucedomoCheckOutPage checkOut;
+  private SaucedomoVerificationPage verification;
+  private SaucedomoCompletedOrderPage completed;
   private WebDriver driver;
 
   @BeforeClass
@@ -31,26 +42,33 @@ public class BuyTshirtProcessTest {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
+    catalog = new SaucedomoCatalogPage(driver);
+    checkOut = new SaucedomoCheckOutPage(driver);
+    logIn = new SaucedomoLogInPage(driver);
+    shoppingCart = new SaucedomoShoppingCartPage(driver);
+    verification = new SaucedomoVerificationPage(driver);
+    completed = new SaucedomoCompletedOrderPage(driver);
   }
 
   @Test(description = "This test is in charge of navigating through the webpage and"
       + "simulating the process of acquisition for a t-shirt")
   public void buyTshirtTest() {
-    driver.get("https://www.saucedemo.com/");
-    driver.findElement(By.id("user-name")).sendKeys("standard_user");
-    driver.findElement(By.id("password")).sendKeys("secret_sauce");
-    driver.findElement(By.id("login-button")).click();
-    driver.findElement(By.id("add-to-cart-sauce-labs-bolt-t-shirt")).click();
-    driver.findElement(By.id("shopping_cart_container")).click();
-    driver.findElement(By.id("checkout")).click();
-    driver.findElement(By.id("first-name")).sendKeys("Juan");
-    driver.findElement(By.id("last-name")).sendKeys("Palma");
-    driver.findElement(By.id("postal-code")).sendKeys("77901");
-    driver.findElement(By.id("continue")).click();
-    driver.findElement(By.id("finish")).click();
-    Assert.assertNotNull(driver.findElement(By.id("checkout_complete_container")));
-    Assert.assertTrue(driver.findElement(By.id("checkout_complete_container"))
-        .findElement(By.className("complete-header")).getText().contains("THANK YOU"));
+    logIn.visitLogin();
+    logIn.logIn("standard_user", "secret_sauce");
+
+    catalog.selectItem();
+    catalog.goToShoppingCart();
+
+    shoppingCart.goToCheckOut();
+
+    checkOut.fillOutForm("Juan", "Palma", "77601");
+
+    verification.finishProcess();
+
+    Object container = completed.getCompletionContainer();
+    String result = completed.getContainerHeader();
+    Assert.assertNotNull(container);
+    Assert.assertTrue(result.contains("THANK YOU"));
   }
 
   @AfterMethod
