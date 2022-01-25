@@ -7,7 +7,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 /**
- * Page Object for the Completed Process page
+ * Page Object for the Completed Process page.
  */
 public class SaucedomoCompletedOrderPage {
 
