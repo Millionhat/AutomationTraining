@@ -13,18 +13,16 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class GooglePage {
 
-  private WebDriver driver;
 
   @FindBy(how = How.NAME, using = "q")
   private WebElement searchBar;
 
-  public GooglePage(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
+  public GooglePage() {
+    PageFactory.initElements(WebDriverContainer.driver, this);
   }
 
   public void goToGoogle() {
-    driver.get("https://www.google.com/");
+    WebDriverContainer.driver.get("https://www.google.com/");
   }
 
   public void search(String search) {
@@ -33,6 +31,6 @@ public class GooglePage {
   }
 
   public String getPageTitle() {
-    return driver.getTitle();
+    return WebDriverContainer.driver.getTitle();
   }
 }

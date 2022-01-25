@@ -12,14 +12,11 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class SaucedomoVerificationPage {
 
-  private WebDriver driver;
-
   @FindBy(how = How.ID, using = "finish")
   private WebElement finishBtn;
 
-  public SaucedomoVerificationPage(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
+  public SaucedomoVerificationPage() {
+    PageFactory.initElements(WebDriverContainer.driver, this);
   }
 
   public void finishProcess() {

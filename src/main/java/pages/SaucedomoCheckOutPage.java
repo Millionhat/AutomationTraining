@@ -26,9 +26,8 @@ public class SaucedomoCheckOutPage {
   @FindBy(how = How.ID, using = "continue")
   private WebElement continueButton;
 
-  public SaucedomoCheckOutPage(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
+  public SaucedomoCheckOutPage() {
+    PageFactory.initElements(WebDriverContainer.driver, this);
   }
 
   /**

@@ -8,12 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.SaucedomoCatalogPage;
-import pages.SaucedomoCheckOutPage;
-import pages.SaucedomoCompletedOrderPage;
-import pages.SaucedomoLogInPage;
-import pages.SaucedomoShoppingCartPage;
-import pages.SaucedomoVerificationPage;
+import pages.*;
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
@@ -26,6 +21,7 @@ public class BuyTshirtProcessTest {
   private SaucedomoVerificationPage verification;
   private SaucedomoCompletedOrderPage completed;
   private WebDriver driver;
+  private WebDriverContainer wdc;
 
   @BeforeClass
   public static void setupWebDriver() {
@@ -42,12 +38,13 @@ public class BuyTshirtProcessTest {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
-    catalog = new SaucedomoCatalogPage(driver);
-    checkOut = new SaucedomoCheckOutPage(driver);
-    logIn = new SaucedomoLogInPage(driver);
-    shoppingCart = new SaucedomoShoppingCartPage(driver);
-    verification = new SaucedomoVerificationPage(driver);
-    completed = new SaucedomoCompletedOrderPage(driver);
+    wdc = new WebDriverContainer(driver);
+    catalog = new SaucedomoCatalogPage();
+    checkOut = new SaucedomoCheckOutPage();
+    logIn = new SaucedomoLogInPage();
+    shoppingCart = new SaucedomoShoppingCartPage();
+    verification = new SaucedomoVerificationPage();
+    completed = new SaucedomoCompletedOrderPage();
   }
 
   @Test(description = "This test is in charge of navigating through the webpage and"

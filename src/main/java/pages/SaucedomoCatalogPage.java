@@ -12,17 +12,14 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class SaucedomoCatalogPage {
 
-  private WebDriver driver;
-
   @FindBy(how = How.ID, using = "add-to-cart-sauce-labs-bolt-t-shirt")
   private WebElement addToCart;
 
   @FindBy(how = How.ID, using = "shopping_cart_container")
   private  WebElement shoppingCart;
 
-  public SaucedomoCatalogPage(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
+  public SaucedomoCatalogPage() {
+    PageFactory.initElements(WebDriverContainer.driver, this);
   }
 
   public void selectItem() {

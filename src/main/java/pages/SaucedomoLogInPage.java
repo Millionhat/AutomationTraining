@@ -13,8 +13,6 @@ import org.openqa.selenium.support.PageFactory;
 
 public class SaucedomoLogInPage {
 
-  private WebDriver driver;
-
   @FindBy(how = How.ID, using = "user-name")
   private WebElement userNameBox;
 
@@ -24,13 +22,12 @@ public class SaucedomoLogInPage {
   @FindBy(how = How.ID, using = "login-button")
   private WebElement loginBtn;
 
-  public SaucedomoLogInPage(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
+  public SaucedomoLogInPage() {
+    PageFactory.initElements(WebDriverContainer.driver, this);
   }
 
   public void visitLogin() {
-    driver.get("https://www.saucedemo.com/");
+    WebDriverContainer.driver.get("https://www.saucedemo.com/");
   }
 
   /**

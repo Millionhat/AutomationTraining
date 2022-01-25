@@ -12,14 +12,11 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class SaucedomoShoppingCartPage {
 
-  private WebDriver driver;
-
   @FindBy(how = How.ID, using = "checkout")
   private WebElement checkoutBtn;
 
-  public SaucedomoShoppingCartPage(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
+  public SaucedomoShoppingCartPage() {
+    PageFactory.initElements(WebDriverContainer.driver, this);
   }
 
   public void goToCheckOut() {

@@ -11,12 +11,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GooglePage;
+import pages.WebDriverContainer;
 
 /**
  * Test class in charge of evaluating a google search using the Selenium Library.
  */
 public class GoogleSearchTest {
 
+  private WebDriverContainer wdc;
   private GooglePage google;
   private WebDriver driver;
 
@@ -36,7 +38,8 @@ public class GoogleSearchTest {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
-    google  = new GooglePage(driver);
+    wdc= new WebDriverContainer(driver);
+    google  = new GooglePage();
   }
 
   @Test (description = "This test is in charge of redirecting "

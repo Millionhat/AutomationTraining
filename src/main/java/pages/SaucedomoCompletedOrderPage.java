@@ -11,17 +11,14 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class SaucedomoCompletedOrderPage {
 
-  private WebDriver driver;
-
   @FindBy(how = How.ID, using = "checkout_complete_container")
   private WebElement checkoutContainer;
 
   @FindBy(how = How.CLASS_NAME, using = "complete-header")
   private WebElement header;
 
-  public SaucedomoCompletedOrderPage(WebDriver driver) {
-    this.driver = driver;
-    PageFactory.initElements(driver, this);
+  public SaucedomoCompletedOrderPage() {
+    PageFactory.initElements(WebDriverContainer.driver, this);
   }
 
   public Object getCompletionContainer() {
