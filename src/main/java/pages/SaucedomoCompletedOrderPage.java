@@ -6,6 +6,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+/**
+ * Page Object for the Completed Process page
+ */
 public class SaucedomoCompletedOrderPage {
 
   private WebDriver driver;
@@ -16,7 +19,7 @@ public class SaucedomoCompletedOrderPage {
   @FindBy(how = How.CLASS_NAME, using = "complete-header")
   private WebElement header;
 
-  public SaucedomoCompletedOrderPage(WebDriver driver){
+  public SaucedomoCompletedOrderPage(WebDriver driver) {
     this.driver = driver;
     PageFactory.initElements(driver, this);
   }
@@ -25,7 +28,7 @@ public class SaucedomoCompletedOrderPage {
     return checkoutContainer;
   }
 
-  public String getContainerHeader(){
+  public String getContainerHeader() {
     return header.getText();
   }
 }

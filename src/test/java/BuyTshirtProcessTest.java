@@ -8,8 +8,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.*;
-
+import pages.SaucedomoCatalogPage;
+import pages.SaucedomoCompletedOrderPage;
+import pages.SaucedomoCheckOutPage;
+import pages.SaucedomoLogInPage;
+import pages.SaucedomoShoppingCartPage;
+import pages.SaucedomoVerificationPage;
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
