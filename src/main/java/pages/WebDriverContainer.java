@@ -11,6 +11,9 @@ public class WebDriverContainer {
 
   public static WebDriver driver;
 
+  /**
+   * Constructor for the WebDriverContainer Class.
+   */
   public WebDriverContainer() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--no-sandbox");
