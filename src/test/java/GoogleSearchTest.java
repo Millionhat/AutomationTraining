@@ -17,7 +17,7 @@ import pages.GooglePage;
  */
 public class GoogleSearchTest {
 
-  private GooglePage google = new GooglePage();
+  private GooglePage google;
   private WebDriver driver;
 
 
@@ -36,18 +36,19 @@ public class GoogleSearchTest {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
+    google  = new GooglePage(driver);
   }
 
   @Test (description = "This test is in charge of redirecting "
       + "to the google website and searching for an specified subject")
   public void searchAtGoogle() {
     Reporter.log("The chrome version being used is the latest available on the linux repo");
-    google.goToGoogle(driver);
+    google.goToGoogle();
 
-    google.googleSearch(driver, "Mjolnir");
+    google.search("Mjolnir");
     Reporter.log("First search task completed");
 
-    google.googleSearch(driver, "perficient");
+    google.search("perficient");
     Reporter.log("Second search task completed");
 
     Assert.assertTrue(driver.getTitle().contains("perficient"));

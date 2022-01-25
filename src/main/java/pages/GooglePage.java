@@ -9,12 +9,19 @@ import org.openqa.selenium.WebDriver;
  */
 public class GooglePage {
 
-  public void goToGoogle(WebDriver driver) {
+  private String location = "q";
+  private WebDriver driver;
+
+  public GooglePage(WebDriver driver) {
+    this.driver = driver;
+  }
+
+  public void goToGoogle() {
     driver.get("https://www.google.com/");
   }
 
-  public void googleSearch(WebDriver driver, String search) {
-    driver.findElement(By.name("q")).clear();
-    driver.findElement(By.name("q")).sendKeys(search + Keys.RETURN);
+  public void search(String search) {
+    driver.findElement(By.name(location)).clear();
+    driver.findElement(By.name(location)).sendKeys(search + Keys.RETURN);
   }
 }

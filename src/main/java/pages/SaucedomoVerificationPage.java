@@ -8,7 +8,13 @@ import org.openqa.selenium.WebDriver;
  */
 public class SaucedomoVerificationPage {
 
-  public void finishProcess(WebDriver driver) {
+  private WebDriver driver;
+
+  public SaucedomoVerificationPage(WebDriver driver) {
+    this.driver = driver;
+  }
+
+  public void finishProcess() {
     driver.findElement(By.id("finish")).click();
   }
 

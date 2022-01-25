@@ -19,11 +19,11 @@ import pages.SaucedomoVerificationPage;
  * Test class in charge of evaluating the process of buying a T Shirt.
  */
 public class BuyTshirtProcessTest {
-  private SaucedomoLogInPage logIn = new SaucedomoLogInPage();
-  private SaucedomoCatalogPage catalog = new SaucedomoCatalogPage();
-  private SaucedomoShoppingCartPage shoppingCart = new SaucedomoShoppingCartPage();
-  private SaucedomoCheckOutPage checkOut = new SaucedomoCheckOutPage();
-  private SaucedomoVerificationPage verification = new SaucedomoVerificationPage();
+  private SaucedomoLogInPage logIn;
+  private SaucedomoCatalogPage catalog;
+  private SaucedomoShoppingCartPage shoppingCart;
+  private SaucedomoCheckOutPage checkOut;
+  private SaucedomoVerificationPage verification;
   private WebDriver driver;
 
   @BeforeClass
@@ -41,31 +41,33 @@ public class BuyTshirtProcessTest {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
+    catalog = new SaucedomoCatalogPage(driver);
+    checkOut = new SaucedomoCheckOutPage(driver);
+    logIn = new SaucedomoLogInPage(driver);
+    shoppingCart = new SaucedomoShoppingCartPage(driver);
+    verification = new SaucedomoVerificationPage(driver);
   }
 
   @Test(description = "This test is in charge of navigating through the webpage and"
       + "simulating the process of acquisition for a t-shirt")
   public void buyTshirtTest() {
-    logIn.visitLogin(driver);
-    logIn.fillUserName(driver);
-    logIn.fillPassword(driver);
-    logIn.submitInfo(driver);
+    logIn.visitLogin();
+    logIn.logIn("standard_user", "secret_sauce");
 
-    catalog.selectItem(driver);
-    catalog.goToShoppingCart(driver);
+    catalog.selectItem();
+    catalog.goToShoppingCart();
 
-    shoppingCart.goToCheckOut(driver);
+    shoppingCart.goToCheckOut();
 
-    checkOut.fillOutName(driver);
-    checkOut.fillOutLastName(driver);
-    checkOut.fillOutPostalCode(driver);
-    checkOut.proceedToVerification(driver);
+    checkOut.fillOutForm("Juan", "Palma", "77601");
 
-    verification.finishProcess(driver);
+    verification.finishProcess();
 
-    Assert.assertNotNull(driver.findElement(By.id("checkout_complete_container")));
-    Assert.assertTrue(driver.findElement(By.id("checkout_complete_container"))
-        .findElement(By.className("complete-header")).getText().contains("THANK YOU"));
+    Object container = driver.findElement(By.id("checkout_complete_container"));
+    String result = driver.findElement(By.id("checkout_complete_container"))
+        .findElement(By.className("complete-header")).getText();
+    Assert.assertNotNull(container);
+    Assert.assertTrue(result.contains("THANK YOU"));
   }
 
   @AfterMethod

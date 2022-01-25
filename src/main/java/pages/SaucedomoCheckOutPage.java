@@ -8,19 +8,23 @@ import org.openqa.selenium.WebDriver;
  */
 public class SaucedomoCheckOutPage {
 
-  public void fillOutName(WebDriver driver) {
-    driver.findElement(By.id("first-name")).sendKeys("Juan");
+  private WebDriver driver;
+
+  public SaucedomoCheckOutPage(WebDriver driver) {
+    this.driver = driver;
   }
 
-  public void fillOutLastName(WebDriver driver) {
-    driver.findElement(By.id("last-name")).sendKeys("Palma");
-  }
-
-  public void fillOutPostalCode(WebDriver driver) {
-    driver.findElement(By.id("postal-code")).sendKeys("77901");
-  }
-
-  public void proceedToVerification(WebDriver driver) {
+  /**
+   * This is the method in charge of filling out the checkout form and submitting it.
+   *
+   * @param name this is a String containing the first name of the buyer
+   * @param lastName this is a String containing the last name of the buyer
+   * @param pc this is a String containing the postal code for the buyer delivery address
+   */
+  public void fillOutForm(String name, String lastName, String pc) {
+    driver.findElement(By.id("first-name")).sendKeys(name);
+    driver.findElement(By.id("last-name")).sendKeys(lastName);
+    driver.findElement(By.id("postal-code")).sendKeys(pc);
     driver.findElement(By.id("continue")).click();
   }
 }

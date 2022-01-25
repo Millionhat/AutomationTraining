@@ -8,7 +8,13 @@ import org.openqa.selenium.WebDriver;
  */
 public class SaucedomoShoppingCartPage {
 
-  public void goToCheckOut(WebDriver driver) {
+  private WebDriver driver;
+
+  public SaucedomoShoppingCartPage(WebDriver driver) {
+    this.driver = driver;
+  }
+
+  public void goToCheckOut() {
     driver.findElement(By.id("checkout")).click();
   }
 }
