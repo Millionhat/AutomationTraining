@@ -8,11 +8,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.SaucedomoCatalogPage;
-import pages.SaucedomoCheckOutPage;
-import pages.SaucedomoLogInPage;
-import pages.SaucedomoShoppingCartPage;
-import pages.SaucedomoVerificationPage;
+import pages.*;
 
 
 /**
@@ -24,6 +20,7 @@ public class BuyTshirtProcessTest {
   private SaucedomoShoppingCartPage shoppingCart;
   private SaucedomoCheckOutPage checkOut;
   private SaucedomoVerificationPage verification;
+  private SaucedomoCompletedOrderPage completed;
   private WebDriver driver;
 
   @BeforeClass
@@ -46,6 +43,7 @@ public class BuyTshirtProcessTest {
     logIn = new SaucedomoLogInPage(driver);
     shoppingCart = new SaucedomoShoppingCartPage(driver);
     verification = new SaucedomoVerificationPage(driver);
+    completed = new SaucedomoCompletedOrderPage(driver);
   }
 
   @Test(description = "This test is in charge of navigating through the webpage and"
@@ -63,9 +61,8 @@ public class BuyTshirtProcessTest {
 
     verification.finishProcess();
 
-    Object container = driver.findElement(By.id("checkout_complete_container"));
-    String result = driver.findElement(By.id("checkout_complete_container"))
-        .findElement(By.className("complete-header")).getText();
+    Object container = completed.getCompletionContainer();
+    String result = completed.getContainerHeader();
     Assert.assertNotNull(container);
     Assert.assertTrue(result.contains("THANK YOU"));
   }

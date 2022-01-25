@@ -31,4 +31,8 @@ public class GooglePage {
     searchBar.clear();
     searchBar.sendKeys(search + Keys.RETURN);
   }
+
+  public String getPageTitle() {
+    return driver.getTitle();
+  }
 }

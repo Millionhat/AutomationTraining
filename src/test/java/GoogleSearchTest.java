@@ -45,13 +45,9 @@ public class GoogleSearchTest {
     Reporter.log("The chrome version being used is the latest available on the linux repo");
     google.goToGoogle();
 
-    google.search("Mjolnir");
-    Reporter.log("First search task completed");
-
     google.search("perficient");
-    Reporter.log("Second search task completed");
-
-    Assert.assertTrue(driver.getTitle().contains("perficient"));
+    String title = google.getPageTitle();
+    Assert.assertTrue(title.contains("perficient"));
   }
 
   @AfterMethod
