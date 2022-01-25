@@ -26,7 +26,6 @@ public class BuyTshirtProcessTest {
   private SaucedomoCheckOutPage checkOut;
   private SaucedomoVerificationPage verification;
   private SaucedomoCompletedOrderPage completed;
-  private WebDriver driver;
   private WebDriverContainer wdc;
 
   @BeforeClass
@@ -39,12 +38,7 @@ public class BuyTshirtProcessTest {
    */
   @BeforeMethod
   public void setup() {
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
-    options.addArguments("--headless");
-    driver = new ChromeDriver(options);
-    wdc = new WebDriverContainer(driver);
+    wdc = new WebDriverContainer();
     catalog = new SaucedomoCatalogPage();
     checkOut = new SaucedomoCheckOutPage();
     logIn = new SaucedomoLogInPage();
@@ -76,6 +70,6 @@ public class BuyTshirtProcessTest {
 
   @AfterMethod
   public void destroy() {
-    driver.quit();
+    wdc.quitDriver();
   }
 }

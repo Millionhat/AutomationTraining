@@ -20,7 +20,6 @@ public class GoogleSearchTest {
 
   private WebDriverContainer wdc;
   private GooglePage google;
-  private WebDriver driver;
 
 
   @BeforeClass
@@ -33,12 +32,7 @@ public class GoogleSearchTest {
   */
   @BeforeMethod
   public void setup() {
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
-    options.addArguments("--headless");
-    driver = new ChromeDriver(options);
-    wdc = new WebDriverContainer(driver);
+    wdc = new WebDriverContainer();
     google  = new GooglePage();
   }
 
@@ -55,6 +49,6 @@ public class GoogleSearchTest {
 
   @AfterMethod
   public void destroy() {
-    driver.quit();
+    wdc.quitDriver();
   }
 }
