@@ -24,9 +24,17 @@ public class WebDriverContainer {
     instance = this;
   }
 
-  synchronized public static WebDriverContainer getInstance() {
+  /**
+   * Method in charge of accessing and verifying if the webdriver instance has been created.
+   * @return WebDriverContainer
+   */
+  public static WebDriverContainer getInstance() {
     if (instance == null) {
-      instance = new WebDriverContainer();
+      synchronized (WebDriverContainer.class){
+        if (instance == null) {
+          instance = new WebDriverContainer();
+        }
+      }
     }
     return instance;
   }
