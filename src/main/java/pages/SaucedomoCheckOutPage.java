@@ -27,7 +27,7 @@ public class SaucedomoCheckOutPage {
   private WebElement continueButton;
 
   public SaucedomoCheckOutPage() {
-    PageFactory.initElements(WebDriverContainer.driver, this);
+    PageFactory.initElements(WebDriverContainer.getInstance().getDriver(), this);
   }
 
   /**

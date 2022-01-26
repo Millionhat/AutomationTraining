@@ -23,11 +23,11 @@ public class SaucedomoLogInPage {
   private WebElement loginBtn;
 
   public SaucedomoLogInPage() {
-    PageFactory.initElements(WebDriverContainer.driver, this);
+    PageFactory.initElements(WebDriverContainer.getInstance().getDriver(), this);
   }
 
   public void visitLogin() {
-    WebDriverContainer.driver.get("https://www.saucedemo.com/");
+    WebDriverContainer.getInstance().getDriver().get("https://www.saucedemo.com/");
   }
 
   /**

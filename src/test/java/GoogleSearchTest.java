@@ -32,7 +32,7 @@ public class GoogleSearchTest {
   */
   @BeforeMethod
   public void setup() {
-    wdc = new WebDriverContainer();
+    wdc = WebDriverContainer.getInstance();
     google  = new GooglePage();
   }
 

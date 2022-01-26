@@ -16,7 +16,7 @@ public class SaucedomoVerificationPage {
   private WebElement finishBtn;
 
   public SaucedomoVerificationPage() {
-    PageFactory.initElements(WebDriverContainer.driver, this);
+    PageFactory.initElements(WebDriverContainer.getInstance().getDriver(), this);
   }
 
   public void finishProcess() {

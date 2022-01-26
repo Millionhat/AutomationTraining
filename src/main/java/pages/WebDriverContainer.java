@@ -9,24 +9,34 @@ import org.openqa.selenium.chrome.ChromeOptions;
  */
 public class WebDriverContainer {
 
-  public static WebDriver driver;
+  private static WebDriverContainer instance;
+  private static WebDriver driver;
 
   /**
    * Constructor for the WebDriverContainer Class.
    */
-  public WebDriverContainer() {
+  private WebDriverContainer() {
     ChromeOptions options = new ChromeOptions();
     options.addArguments("--no-sandbox");
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
+    instance = this;
   }
 
-  public static WebDriver getDriver() {
-    return driver;
+  synchronized public static WebDriverContainer getInstance() {
+    if (instance == null) {
+      instance = new WebDriverContainer();
+    }
+    return instance;
   }
 
   public void quitDriver() {
     driver.quit();
+    instance = null;
+  }
+
+  public static WebDriver getDriver() {
+    return driver;
   }
 }

@@ -38,7 +38,7 @@ public class BuyTshirtProcessTest {
    */
   @BeforeMethod
   public void setup() {
-    wdc = new WebDriverContainer();
+    wdc = WebDriverContainer.getInstance();
     catalog = new SaucedomoCatalogPage();
     checkOut = new SaucedomoCheckOutPage();
     logIn = new SaucedomoLogInPage();
