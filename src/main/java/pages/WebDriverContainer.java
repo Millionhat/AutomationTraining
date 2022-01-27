@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
  */
 public class WebDriverContainer {
 
-  private static WebDriverContainer instance;
   private static WebDriver driver;
 
   /**
@@ -21,31 +20,25 @@ public class WebDriverContainer {
     options.addArguments("--disable-dev-shm-usage");
     options.addArguments("--headless");
     driver = new ChromeDriver(options);
-    instance = this;
   }
 
   /**
    * Method in charge of accessing and verifying if the webdriver instance has been created.
    *
-   * @return WebDriverContainer
+   * @return WebDriver
    */
-  public static WebDriverContainer getInstance() {
-    if (instance == null) {
+  public static WebDriver getInstance() {
+    if (driver == null) {
       synchronized (WebDriverContainer.class) {
-        if (instance == null) {
-          instance = new WebDriverContainer();
+        if (driver == null) {
+          new WebDriverContainer();
         }
       }
     }
-    return instance;
+    return driver;
   }
 
   public void quitDriver() {
     driver.quit();
-    instance = null;
-  }
-
-  public static WebDriver getDriver() {
-    return driver;
   }
 }

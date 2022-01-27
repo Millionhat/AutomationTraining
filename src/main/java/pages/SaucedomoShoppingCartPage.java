@@ -16,7 +16,7 @@ public class SaucedomoShoppingCartPage {
   private WebElement checkoutBtn;
 
   public SaucedomoShoppingCartPage() {
-    PageFactory.initElements(WebDriverContainer.getInstance().getDriver(), this);
+    PageFactory.initElements(WebDriverContainer.getInstance(), this);
   }
 
   public void goToCheckOut() {

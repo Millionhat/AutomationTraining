@@ -26,7 +26,7 @@ public class BuyTshirtProcessTest {
   private SaucedomoCheckOutPage checkOut;
   private SaucedomoVerificationPage verification;
   private SaucedomoCompletedOrderPage completed;
-  private WebDriverContainer wdc;
+  private WebDriver wdc;
 
   @BeforeClass
   public static void setupWebDriver() {
@@ -70,6 +70,6 @@ public class BuyTshirtProcessTest {
 
   @AfterMethod
   public void destroy() {
-    wdc.quitDriver();
+    //wdc.close();
   }
 }

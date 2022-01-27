@@ -18,11 +18,11 @@ public class GooglePage {
   private WebElement searchBar;
 
   public GooglePage() {
-    PageFactory.initElements(WebDriverContainer.getInstance().getDriver(), this);
+    PageFactory.initElements(WebDriverContainer.getInstance(), this);
   }
 
   public void goToGoogle() {
-    WebDriverContainer.getInstance().getDriver().get("https://www.google.com/");
+    WebDriverContainer.getInstance().get("https://www.google.com/");
   }
 
   public void search(String search) {
@@ -31,6 +31,6 @@ public class GooglePage {
   }
 
   public String getPageTitle() {
-    return WebDriverContainer.getInstance().getDriver().getTitle();
+    return WebDriverContainer.getInstance().getTitle();
   }
 }

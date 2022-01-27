@@ -19,7 +19,7 @@ public class SaucedomoCatalogPage {
   private  WebElement shoppingCart;
 
   public SaucedomoCatalogPage() {
-    PageFactory.initElements(WebDriverContainer.getInstance().getDriver(), this);
+    PageFactory.initElements(WebDriverContainer.getInstance(), this);
   }
 
   public void selectItem() {

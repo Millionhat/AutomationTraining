@@ -18,7 +18,7 @@ public class SaucedomoCompletedOrderPage {
   private WebElement header;
 
   public SaucedomoCompletedOrderPage() {
-    PageFactory.initElements(WebDriverContainer.getInstance().getDriver(), this);
+    PageFactory.initElements(WebDriverContainer.getInstance(), this);
   }
 
   public Object getCompletionContainer() {

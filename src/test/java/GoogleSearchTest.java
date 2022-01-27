@@ -18,7 +18,7 @@ import pages.WebDriverContainer;
  */
 public class GoogleSearchTest {
 
-  private WebDriverContainer wdc;
+  private WebDriver wdc;
   private GooglePage google;
 
 
@@ -49,6 +49,6 @@ public class GoogleSearchTest {
 
   @AfterMethod
   public void destroy() {
-    wdc.quitDriver();
+    //wdc.quit();
   }
 }
