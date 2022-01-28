@@ -5,7 +5,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 /**
- * Class in charge of storing the webDriver for an easy access to the Page classes.
+ * Class in charge of storing the webDriver for easy access to the Page classes.
  */
 public class WebDriverContainer {
 
@@ -28,17 +28,11 @@ public class WebDriverContainer {
    * @return WebDriver
    */
   public static WebDriver getInstance() {
-    if (driver == null) {
       synchronized (WebDriverContainer.class) {
         if (driver == null) {
           new WebDriverContainer();
         }
       }
-    }
     return driver;
-  }
-
-  public void quitDriver() {
-    driver.quit();
   }
 }

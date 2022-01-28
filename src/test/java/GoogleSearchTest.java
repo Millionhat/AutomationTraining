@@ -18,7 +18,7 @@ import pages.WebDriverContainer;
  */
 public class GoogleSearchTest {
 
-  private WebDriver wdc;
+  private WebDriver driver;
   private GooglePage google;
 
 
@@ -32,7 +32,7 @@ public class GoogleSearchTest {
   */
   @BeforeMethod
   public void setup() {
-    wdc = WebDriverContainer.getInstance();
+    driver = WebDriverContainer.getInstance();
     google  = new GooglePage();
   }
 
@@ -47,8 +47,4 @@ public class GoogleSearchTest {
     Assert.assertTrue(title.contains("perficient"));
   }
 
-  @AfterMethod
-  public void destroy() {
-    //wdc.quit();
-  }
 }
