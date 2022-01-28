@@ -28,11 +28,11 @@ public class WebDriverContainer {
    * @return WebDriver
    */
   public static WebDriver getInstance() {
-      synchronized (WebDriverContainer.class) {
-        if (driver == null) {
-          new WebDriverContainer();
-        }
+    synchronized (WebDriverContainer.class) {
+      if (driver == null) {
+        new WebDriverContainer();
       }
+    }
     return driver;
   }
 }
