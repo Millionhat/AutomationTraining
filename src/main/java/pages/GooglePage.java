@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,13 +15,15 @@ public class GooglePage {
 
   @FindBy(how = How.NAME, using = "q")
   private WebElement searchBar;
+  private WebDriver driver;
 
   public GooglePage() {
-    PageFactory.initElements(WebDriverContainer.getInstance(), this);
+    driver = WebDriverContainer.getInstance();
+    PageFactory.initElements(driver, this);
   }
 
   public void goToGoogle() {
-    WebDriverContainer.getInstance().get("https://www.google.com/");
+    driver.get("https://www.google.com/");
   }
 
   public void search(String search) {
@@ -31,6 +32,6 @@ public class GooglePage {
   }
 
   public String getPageTitle() {
-    return WebDriverContainer.getInstance().getTitle();
+    return driver.getTitle();
   }
 }

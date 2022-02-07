@@ -11,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class SaucedomoCompletedOrderPage {
 
+  private WebDriver driver;
+
   @FindBy(how = How.ID, using = "checkout_complete_container")
   private WebElement checkoutContainer;
 
@@ -18,7 +20,8 @@ public class SaucedomoCompletedOrderPage {
   private WebElement header;
 
   public SaucedomoCompletedOrderPage() {
-    PageFactory.initElements(WebDriverContainer.getInstance(), this);
+    driver = WebDriverContainer.getInstance();
+    PageFactory.initElements(driver, this);
   }
 
   public Object getCompletionContainer() {
@@ -27,5 +30,9 @@ public class SaucedomoCompletedOrderPage {
 
   public String getContainerHeader() {
     return header.getText();
+  }
+
+  public void closeDriver() {
+    driver.close();
   }
 }

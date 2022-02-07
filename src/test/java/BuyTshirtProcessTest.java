@@ -1,20 +1,10 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.SaucedomoCatalogPage;
-import pages.SaucedomoCheckOutPage;
-import pages.SaucedomoCompletedOrderPage;
-import pages.SaucedomoLogInPage;
-import pages.SaucedomoShoppingCartPage;
-import pages.SaucedomoVerificationPage;
-import pages.WebDriverContainer;
+import pages.*;
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
@@ -38,7 +28,6 @@ public class BuyTshirtProcessTest {
    */
   @BeforeMethod
   public void setup() {
-    driver = WebDriverContainer.getInstance();
     catalog = new SaucedomoCatalogPage();
     checkOut = new SaucedomoCheckOutPage();
     logIn = new SaucedomoLogInPage();
@@ -66,10 +55,7 @@ public class BuyTshirtProcessTest {
     String result = completed.getContainerHeader();
     Assert.assertNotNull(container);
     Assert.assertTrue(result.contains("THANK YOU"));
+
   }
 
-  @AfterMethod
-  public void destroy() {
-    driver.close();
-  }
 }
