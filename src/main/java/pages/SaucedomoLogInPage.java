@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,13 +23,13 @@ public class SaucedomoLogInPage {
   @FindBy(how = How.ID, using = "login-button")
   private WebElement loginBtn;
 
-  public SaucedomoLogInPage(WebDriver driver) {
-    this.driver = driver;
+  public SaucedomoLogInPage() {
+    driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 
   public void visitLogin() {
-    driver.get("https://www.saucedemo.com/");
+    WebDriverContainer.getInstance().get("https://www.saucedemo.com/");
   }
 
   /**

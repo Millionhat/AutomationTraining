@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,13 +12,13 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class GooglePage {
 
-  private WebDriver driver;
 
   @FindBy(how = How.NAME, using = "q")
   private WebElement searchBar;
+  private WebDriver driver;
 
-  public GooglePage(WebDriver driver) {
-    this.driver = driver;
+  public GooglePage() {
+    driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 

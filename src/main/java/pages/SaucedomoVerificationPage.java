@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +16,8 @@ public class SaucedomoVerificationPage {
   @FindBy(how = How.ID, using = "finish")
   private WebElement finishBtn;
 
-  public SaucedomoVerificationPage(WebDriver driver) {
-    this.driver = driver;
+  public SaucedomoVerificationPage() {
+    driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 

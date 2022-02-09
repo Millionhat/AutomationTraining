@@ -19,8 +19,8 @@ public class SaucedomoCompletedOrderPage {
   @FindBy(how = How.CLASS_NAME, using = "complete-header")
   private WebElement header;
 
-  public SaucedomoCompletedOrderPage(WebDriver driver) {
-    this.driver = driver;
+  public SaucedomoCompletedOrderPage() {
+    driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 
@@ -30,5 +30,9 @@ public class SaucedomoCompletedOrderPage {
 
   public String getContainerHeader() {
     return header.getText();
+  }
+
+  public void closeDriver() {
+    driver.close();
   }
 }

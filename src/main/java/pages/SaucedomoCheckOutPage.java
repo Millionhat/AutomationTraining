@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,8 +25,8 @@ public class SaucedomoCheckOutPage {
   @FindBy(how = How.ID, using = "continue")
   private WebElement continueButton;
 
-  public SaucedomoCheckOutPage(WebDriver driver) {
-    this.driver = driver;
+  public SaucedomoCheckOutPage() {
+    driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 

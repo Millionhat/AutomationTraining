@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,8 +19,8 @@ public class SaucedomoCatalogPage {
   @FindBy(how = How.ID, using = "shopping_cart_container")
   private  WebElement shoppingCart;
 
-  public SaucedomoCatalogPage(WebDriver driver) {
-    this.driver = driver;
+  public SaucedomoCatalogPage() {
+    driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 

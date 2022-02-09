@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,8 +16,8 @@ public class SaucedomoShoppingCartPage {
   @FindBy(how = How.ID, using = "checkout")
   private WebElement checkoutBtn;
 
-  public SaucedomoShoppingCartPage(WebDriver driver) {
-    this.driver = driver;
+  public SaucedomoShoppingCartPage() {
+    driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 

@@ -25,7 +25,6 @@ public class BuyTshirtProcessTest {
   private SaucedomoCheckOutPage checkOut;
   private SaucedomoVerificationPage verification;
   private SaucedomoCompletedOrderPage completed;
-  private WebDriver driver;
 
   @BeforeClass
   public static void setupWebDriver() {
@@ -37,17 +36,13 @@ public class BuyTshirtProcessTest {
    */
   @BeforeMethod
   public void setup() {
-    ChromeOptions options = new ChromeOptions();
-    options.addArguments("--no-sandbox");
-    options.addArguments("--disable-dev-shm-usage");
-    options.addArguments("--headless");
-    driver = new ChromeDriver(options);
-    catalog = new SaucedomoCatalogPage(driver);
-    checkOut = new SaucedomoCheckOutPage(driver);
-    logIn = new SaucedomoLogInPage(driver);
-    shoppingCart = new SaucedomoShoppingCartPage(driver);
-    verification = new SaucedomoVerificationPage(driver);
-    completed = new SaucedomoCompletedOrderPage(driver);
+
+    catalog = new SaucedomoCatalogPage();
+    checkOut = new SaucedomoCheckOutPage();
+    logIn = new SaucedomoLogInPage();
+    shoppingCart = new SaucedomoShoppingCartPage();
+    verification = new SaucedomoVerificationPage();
+    completed = new SaucedomoCompletedOrderPage();
   }
 
   @Test(description = "This test is in charge of navigating through the webpage and"
@@ -71,8 +66,4 @@ public class BuyTshirtProcessTest {
     Assert.assertTrue(result.contains("THANK YOU"));
   }
 
-  @AfterMethod
-  public void destroy() {
-    driver.quit();
-  }
 }
