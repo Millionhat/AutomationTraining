@@ -22,13 +22,21 @@ public class GooglePage {
     PageFactory.initElements(driver, this);
   }
 
-  public void goToGoogle() {
+  public GooglePage goToGoogle() {
     driver.get("https://www.google.com/");
+    return this;
   }
 
-  public void search(String search) {
+  /**
+   * Method in charge of executing the google search.
+   *
+   * @param search String
+   * @return Returns the instance of the class
+   */
+  public GooglePage search(String search) {
     searchBar.clear();
     searchBar.sendKeys(search + Keys.RETURN);
+    return this;
   }
 
   public String getPageTitle() {

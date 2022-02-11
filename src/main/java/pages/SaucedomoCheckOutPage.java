@@ -37,10 +37,12 @@ public class SaucedomoCheckOutPage {
    * @param lastName this is a String containing the last name of the buyer
    * @param pc this is a String containing the postal code for the buyer delivery address
    */
-  public void fillOutForm(String name, String lastName, String pc) {
+  public SaucedomoVerificationPage fillOutForm(String name, String lastName, String pc) {
     personName.sendKeys(name);
     personLastName.sendKeys(lastName);
     postalCode.sendKeys(pc);
     continueButton.click();
+
+    return new SaucedomoVerificationPage();
   }
 }

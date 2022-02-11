@@ -24,11 +24,13 @@ public class SaucedomoCatalogPage {
     PageFactory.initElements(driver, this);
   }
 
-  public void selectItem() {
+  public SaucedomoCatalogPage selectItem() {
     addToCart.click();
+    return this;
   }
 
-  public void goToShoppingCart() {
+  public SaucedomoShoppingCartPage goToShoppingCart() {
     shoppingCart.click();
+    return new SaucedomoShoppingCartPage();
   }
 }
