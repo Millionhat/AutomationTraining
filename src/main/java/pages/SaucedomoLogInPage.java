@@ -28,8 +28,9 @@ public class SaucedomoLogInPage {
     PageFactory.initElements(driver, this);
   }
 
-  public void visitLogin() {
+  public SaucedomoLogInPage visitLogin() {
     WebDriverContainer.getInstance().get("https://www.saucedemo.com/");
+    return this;
   }
 
   /**
@@ -39,10 +40,11 @@ public class SaucedomoLogInPage {
    * @param username string that contains the username of the user
    * @param password string that contains the password from the user
    */
-  public void logIn(String username, String password) {
+  public SaucedomoCatalogPage logIn(String username, String password) {
     userNameBox.sendKeys(username);
     passwordBox.sendKeys(password);
     loginBtn.click();
+    return new SaucedomoCatalogPage();
   }
 
 }
