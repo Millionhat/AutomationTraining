@@ -6,6 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Object class for the google webpage.
@@ -40,11 +43,8 @@ public class GooglePage {
   }
 
   public String getPageTitle() {
-    try {
-      Thread.sleep(1500);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+    WebDriverWait wait = new WebDriverWait(driver,5);
+    wait.until(ExpectedConditions.titleContains("perficient"));
     return driver.getTitle();
   }
 }
