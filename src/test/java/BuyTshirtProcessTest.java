@@ -34,8 +34,8 @@ public class BuyTshirtProcessTest {
         .goToCheckOut()
         .fillOutForm("Juan", "Palma", "77601")
         .finishProcess().getContainerHeader();
-
     Assert.assertEquals(result, "THANK YOU FOR YOUR ORDER");
+
   }
 
 }
