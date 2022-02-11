@@ -21,8 +21,9 @@ public class SaucedomoVerificationPage {
     PageFactory.initElements(driver, this);
   }
 
-  public void finishProcess() {
+  public SaucedomoCompletedOrderPage finishProcess() {
     finishBtn.click();
+    return new SaucedomoCompletedOrderPage();
   }
 
 }

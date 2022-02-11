@@ -21,7 +21,8 @@ public class SaucedomoShoppingCartPage {
     PageFactory.initElements(driver, this);
   }
 
-  public void goToCheckOut() {
+  public SaucedomoCheckOutPage goToCheckOut() {
     checkoutBtn.click();
+    return new SaucedomoCheckOutPage();
   }
 }

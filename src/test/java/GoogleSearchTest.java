@@ -31,11 +31,10 @@ public class GoogleSearchTest {
       + "to the google website and searching for an specified subject")
   public void searchAtGoogle() {
     Reporter.log("The chrome version being used is the latest available on the linux repo");
-    google.goToGoogle();
+    String title = google.goToGoogle()
+        .search("perficient").getPageTitle();
 
-    google.search("perficient");
-    String title = google.getPageTitle();
-    Assert.assertTrue(title.contains("perficient"));
+    Assert.assertEquals(title, "perficient - Google Search");
   }
 
 }
