@@ -29,6 +29,7 @@ public class WebDriverContainer {
   private String sessionId;
   private SauceREST sauceClient;
   private String testName;
+  private TestWatcher watcher;
   /**
    * Constructor for the WebDriverContainer Class.
    */
@@ -36,6 +37,7 @@ public class WebDriverContainer {
     browser = System.getenv("browserName");
     isLocal = System.getenv("isLocal");
     driver = createDriver(browser, isLocal);
+    watcher = new SauceTestWatcher();
   }
 
   private WebDriver createDriver(String browser, String isLocal) throws MalformedURLException {
