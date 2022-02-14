@@ -21,33 +21,37 @@ public class WebDriverContainer {
    */
   private WebDriverContainer() {
     String browser = System.getenv("browserName");
-    if (browser.equalsIgnoreCase("chrome")) {
-      WebDriverManager.chromedriver().setup();
-      ChromeOptions options = new ChromeOptions();
-      options.addArguments("--no-sandbox");
-      options.addArguments("--disable-dev-shm-usage");
-      options.addArguments("--headless");
-      driver = new ChromeDriver(options);
+    switch (browser) {
+      case "chrome":
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--no-sandbox");
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
+        break;
 
-    } else if (browser.equalsIgnoreCase("firefox")) {
-      WebDriverManager.firefoxdriver().setup();
-      FirefoxOptions firefoxOptions = new FirefoxOptions();
-      firefoxOptions.addArguments("--no-sandbox");
-      firefoxOptions.addArguments("--disable-dev-shm-usage");
-      firefoxOptions.addArguments("--headless");
-      driver = new FirefoxDriver(firefoxOptions);
+      case "firefox":
+        WebDriverManager.firefoxdriver().setup();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.addArguments("--no-sandbox");
+        firefoxOptions.addArguments("--disable-dev-shm-usage");
+        firefoxOptions.addArguments("--headless");
+        driver = new FirefoxDriver(firefoxOptions);
+        break;
 
-    } else if (browser.equalsIgnoreCase("edge")) {
-      WebDriverManager.edgedriver().setup();
-      EdgeOptions edgeOptions = new EdgeOptions();
-      edgeOptions.addArguments("--no-sandbox");
-      edgeOptions.addArguments("--disable-dev-shm-usage");
-      edgeOptions.addArguments("--headless");
-      driver = new EdgeDriver(edgeOptions);
-    } else {
-      throw new RuntimeException("Browser not defined correctly or doesnt exist");
+      case "edge":
+        WebDriverManager.edgedriver().setup();
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.addArguments("--no-sandbox");
+        edgeOptions.addArguments("--disable-dev-shm-usage");
+        edgeOptions.addArguments("--headless");
+        driver = new EdgeDriver(edgeOptions);
+        break;
+
+      default:
+        throw new RuntimeException("Browser not defined correctly or doesnt exist");
     }
-
   }
 
   /**
