@@ -129,13 +129,11 @@ public class WebDriverContainer {
     @Override
     protected void succeeded(Description description) {
       sauceClient.jobPassed(sessionId);
-      driver.quit();
     }
 
     @Override
     protected void failed(Throwable e, Description description) {
       sauceClient.jobFailed(sessionId);
-      driver.quit();
     }
 
     @Override
