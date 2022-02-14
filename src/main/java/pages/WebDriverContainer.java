@@ -1,6 +1,10 @@
 package pages;
 
+import com.saucelabs.saucerest.DataCenter;
+import com.saucelabs.saucerest.SauceREST;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -22,6 +26,9 @@ public class WebDriverContainer {
   private static WebDriver driver;
   private String browser;
   private String isLocal;
+  private String sessionId;
+  private SauceREST sauceClient;
+  private String testName;
   /**
    * Constructor for the WebDriverContainer Class.
    */
@@ -65,11 +72,16 @@ public class WebDriverContainer {
     capabilities.setCapability("browserVersion", "latest");
     capabilities.setCapability("platformName", "Windows 10");
     capabilities.setCapability("browserName", browser);
+    capabilities.setCapability("name", testName);
     capabilities.setCapability("sauce:options", sauceOptions);
 
     String sauceUrl = System.getenv("sauceUrl");
 
-    return new RemoteWebDriver(new URL(sauceUrl), capabilities);
+    WebDriver wd = new RemoteWebDriver(new URL(sauceUrl), capabilities);
+
+    sessionId = ((RemoteWebDriver) wd).getSessionId().toString();
+    sauceClient = new SauceREST(System.getenv("sauceuser"), System.getenv("saucekey"), DataCenter.US);
+    return wd;
   }
 
   private WebDriver edgeDriverSetup() {
@@ -111,5 +123,24 @@ public class WebDriverContainer {
       }
     }
     return driver;
+  }
+
+  public class SauceTestWatcher extends TestWatcher {
+    @Override
+    protected void succeeded(Description description) {
+      sauceClient.jobPassed(sessionId);
+      driver.quit();
+    }
+
+    @Override
+    protected void failed(Throwable e, Description description) {
+      sauceClient.jobFailed(sessionId);
+      driver.quit();
+    }
+
+    @Override
+    protected void starting(Description description) {
+      testName =description.getDisplayName();
+    }
   }
 }
