@@ -1,10 +1,12 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.SaucedomoCompletedOrderPage;
 import pages.SaucedomoLogInPage;
+import pages.WebDriverContainer;
 
 import java.net.MalformedURLException;
 
@@ -38,6 +40,11 @@ public class BuyTshirtProcessTest {
         .finishProcess().getContainerHeader();
     Assert.assertEquals(result, "THANK YOU FOR YOUR ORDER");
 
+  }
+
+  @AfterClass
+  public void closeDriver() throws MalformedURLException {
+    WebDriverContainer.getInstance().quit();
   }
 
 }
