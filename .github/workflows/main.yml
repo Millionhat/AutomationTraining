@@ -13,8 +13,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-
 
 jobs:
   build:
@@ -22,7 +20,7 @@ jobs:
     strategy:
       matrix:
         browsers: ["chrome","firefox","edge"]
-    steps:
+      steps:
     - uses: browser-actions/setup-chrome@latest
     - run: chrome --version
 
