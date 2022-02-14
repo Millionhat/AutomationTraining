@@ -13,17 +13,13 @@ public class BuyTshirtProcessTest {
   private SaucedomoLogInPage logIn;
   private SaucedomoCompletedOrderPage completed;
 
-  @BeforeClass
-  public static void setupWebDriver() {
-    WebDriverManager.chromedriver().setup();
-  }
+
 
   /**
    * This method is in charge of setting up the chrome driver for the test.
    */
   @BeforeMethod
   public void setup() {
-
 
     logIn = new SaucedomoLogInPage();
   }

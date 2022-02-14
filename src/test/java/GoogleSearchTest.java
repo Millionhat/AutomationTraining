@@ -1,3 +1,4 @@
+import com.beust.jcommander.Parameter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.testng.Assert;
 import org.testng.Reporter;
@@ -12,12 +13,6 @@ import pages.GooglePage;
 public class GoogleSearchTest {
 
   private GooglePage google;
-
-
-  @BeforeClass
-  public static void setupWebDriver() {
-    WebDriverManager.chromedriver().setup();
-  }
 
   /**
   * This method is in charge of setting up the chrome driver for the test.
