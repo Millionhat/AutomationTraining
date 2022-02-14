@@ -58,8 +58,8 @@ public class WebDriverContainer {
 
   private WebDriver createRemoteWebDriver() throws MalformedURLException {
     MutableCapabilities sauceOptions = new MutableCapabilities();
-    sauceOptions.setCapability("username",System.getenv("SAUCEUSER"));
-    sauceOptions.setCapability("accesskey",System.getenv("SAUCEKEY"));
+    sauceOptions.setCapability("username",System.getenv("sauceuser"));
+    sauceOptions.setCapability("accesskey",System.getenv("saucekey"));
 
     MutableCapabilities capabilities = new MutableCapabilities();
     capabilities.setCapability("browserVersion", "latest");
