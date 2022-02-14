@@ -1,5 +1,6 @@
 package pages;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -23,7 +24,7 @@ public class GooglePage {
   private WebElement searchBar;
   private WebDriver driver;
 
-  public GooglePage() {
+  public GooglePage() throws MalformedURLException {
     driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }

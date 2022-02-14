@@ -6,6 +6,8 @@ import org.testng.annotations.Test;
 import pages.SaucedomoCompletedOrderPage;
 import pages.SaucedomoLogInPage;
 
+import java.net.MalformedURLException;
+
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
  */
@@ -19,14 +21,14 @@ public class BuyTshirtProcessTest {
    * This method is in charge of setting up the chrome driver for the test.
    */
   @BeforeMethod
-  public void setup() {
+  public void setup() throws MalformedURLException {
 
     logIn = new SaucedomoLogInPage();
   }
 
   @Test(description = "This test is in charge of navigating through the webpage and"
       + "simulating the process of acquisition for a t-shirt")
-  public void buyTshirtTest() {
+  public void buyTshirtTest() throws MalformedURLException {
     String result = logIn.visitLogin()
         .logIn("standard_user", "secret_sauce")
         .selectItem()
