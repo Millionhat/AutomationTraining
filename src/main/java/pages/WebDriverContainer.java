@@ -3,6 +3,7 @@ package pages;
 import com.saucelabs.saucerest.DataCenter;
 import com.saucelabs.saucerest.SauceREST;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.MutableCapabilities;
@@ -29,7 +30,9 @@ public class WebDriverContainer {
   private String sessionId;
   private SauceREST sauceClient;
   private String testName;
-  private TestWatcher watcher;
+
+  @Rule
+  public TestWatcher watcher = new SauceTestWatcher();
   /**
    * Constructor for the WebDriverContainer Class.
    */
