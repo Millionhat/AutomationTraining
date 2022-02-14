@@ -36,7 +36,7 @@ public class SaucedomoCompletedOrderPage {
 
   public String getContainerHeader() {
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-    wait.until(ExpectedConditions.titleContains("THANK YOU"));
+    wait.until(ExpectedConditions.visibilityOf(header));
     return header.getText();
   }
 
