@@ -66,7 +66,7 @@ public class WebDriverContainer {
     MutableCapabilities sauceOptions = new MutableCapabilities();
     sauceOptions.setCapability("username", System.getenv("sauceuser"));
     sauceOptions.setCapability("accesskey", System.getenv("saucekey"));
-
+    sauceOptions.setCapability("name", browser + " Sauce Test");
     MutableCapabilities capabilities = new MutableCapabilities();
     capabilities.setCapability("browserVersion","latest");
     capabilities.setCapability("platfomrName", "Windows 10");
