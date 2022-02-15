@@ -1,11 +1,14 @@
+
 import com.beust.jcommander.Parameter;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.net.MalformedURLException;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GooglePage;
+
 
 /**
  * Test class in charge of evaluating a google search using the Selenium Library.
@@ -18,7 +21,7 @@ public class GoogleSearchTest {
   * This method is in charge of setting up the chrome driver for the test.
   */
   @BeforeMethod
-  public void setup() {
+  public void setup() throws MalformedURLException {
     google  = new GooglePage();
   }
 

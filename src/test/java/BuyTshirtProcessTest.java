@@ -1,10 +1,15 @@
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.net.MalformedURLException;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.SaucedomoCompletedOrderPage;
 import pages.SaucedomoLogInPage;
+import pages.WebDriverContainer;
+
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.
@@ -19,14 +24,14 @@ public class BuyTshirtProcessTest {
    * This method is in charge of setting up the chrome driver for the test.
    */
   @BeforeMethod
-  public void setup() {
+  public void setup() throws MalformedURLException {
 
     logIn = new SaucedomoLogInPage();
   }
 
   @Test(description = "This test is in charge of navigating through the webpage and"
       + "simulating the process of acquisition for a t-shirt")
-  public void buyTshirtTest() {
+  public void buyTshirtTest() throws MalformedURLException {
     String result = logIn.visitLogin()
         .logIn("standard_user", "secret_sauce")
         .selectItem()
@@ -36,6 +41,11 @@ public class BuyTshirtProcessTest {
         .finishProcess().getContainerHeader();
     Assert.assertEquals(result, "THANK YOU FOR YOUR ORDER");
 
+  }
+
+  @AfterSuite
+  public void closeDriver() throws MalformedURLException {
+    WebDriverContainer.getInstance().quit();
   }
 
 }

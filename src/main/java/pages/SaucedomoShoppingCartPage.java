@@ -1,5 +1,6 @@
 package pages;
 
+import java.net.MalformedURLException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,12 +17,12 @@ public class SaucedomoShoppingCartPage {
   @FindBy(how = How.ID, using = "checkout")
   private WebElement checkoutBtn;
 
-  public SaucedomoShoppingCartPage() {
+  public SaucedomoShoppingCartPage() throws MalformedURLException {
     driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 
-  public SaucedomoCheckOutPage goToCheckOut() {
+  public SaucedomoCheckOutPage goToCheckOut() throws MalformedURLException {
     checkoutBtn.click();
     return new SaucedomoCheckOutPage();
   }

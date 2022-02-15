@@ -1,6 +1,9 @@
 package pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.net.MalformedURLException;
+import java.net.URL;
+import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -8,6 +11,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.Browser;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 
 /**
  * Class in charge of storing the webDriver for easy access to the Page classes.
@@ -16,24 +23,71 @@ public class WebDriverContainer {
 
   private static WebDriver driver;
 
+  private String browser;
+
+  private String isLocal;
+
+
   /**
    * Constructor for the WebDriverContainer Class.
    */
-  private WebDriverContainer() {
-    String browser = System.getenv("browserName");
-    driver = createDriver(browser);
+  private WebDriverContainer() throws MalformedURLException {
+    browser = System.getenv("browserName");
+    isLocal = System.getenv("isLocal");
+    driver = createDriver();
   }
 
-  private WebDriver createDriver(String browser) {
+  private WebDriver createDriver() throws MalformedURLException {
+    switch (isLocal) {
+      case "true":
+        switch (browser) {
+          case "chrome":
+            return chromeDriverSetup();
+
+          case "firefox":
+            return firefoxDriverSetup();
+
+          case "edge":
+            return edgeDriverSetup();
+
+          default:
+            throw new RuntimeException("Browser not defined correctly or doesnt exist");
+        }
+
+      case "false":
+        return remoteDriverSetup();
+
+      default:
+        throw new RuntimeException("Running environment not specified");
+    }
+
+  }
+
+  private WebDriver remoteDriverSetup() throws MalformedURLException {
+    MutableCapabilities sauceOptions = new MutableCapabilities();
+    sauceOptions.setCapability("username", System.getenv("sauceuser"));
+    sauceOptions.setCapability("accesskey", System.getenv("saucekey"));
+    sauceOptions.setCapability("name", browser + " Sauce Test");
+    MutableCapabilities capabilities = new MutableCapabilities();
+    capabilities = remoteDriverconfig();
+    capabilities.setCapability("browserVersion", "latest");
+    capabilities.setCapability("platformName", "Windows 10");
+    capabilities.setCapability("sauce:options", sauceOptions);
+    String sauceUrl = System.getenv("sauceUrl");
+    return new RemoteWebDriver(new URL(sauceUrl), capabilities);
+
+  }
+
+  private MutableCapabilities remoteDriverconfig() {
     switch (browser) {
       case "chrome":
-        return chromeDriverSetup();
+        return new ChromeOptions();
 
       case "firefox":
-        return firefoxDriverSetup();
+        return new FirefoxOptions();
 
       case "edge":
-        return edgeDriverSetup();
+        return new EdgeOptions();
 
       default:
         throw new RuntimeException("Browser not defined correctly or doesnt exist");
@@ -72,7 +126,7 @@ public class WebDriverContainer {
    *
    * @return WebDriver
    */
-  public static WebDriver getInstance() {
+  public static WebDriver getInstance() throws MalformedURLException {
     synchronized (WebDriverContainer.class) {
       if (driver == null) {
         new WebDriverContainer();

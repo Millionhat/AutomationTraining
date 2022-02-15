@@ -1,5 +1,6 @@
 package pages;
 
+import java.net.MalformedURLException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,12 +17,12 @@ public class SaucedomoVerificationPage {
   @FindBy(how = How.ID, using = "finish")
   private WebElement finishBtn;
 
-  public SaucedomoVerificationPage() {
+  public SaucedomoVerificationPage() throws MalformedURLException {
     driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 
-  public SaucedomoCompletedOrderPage finishProcess() {
+  public SaucedomoCompletedOrderPage finishProcess() throws MalformedURLException {
     finishBtn.click();
     return new SaucedomoCompletedOrderPage();
   }
