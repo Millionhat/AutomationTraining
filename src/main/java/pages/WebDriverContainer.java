@@ -28,8 +28,8 @@ public class WebDriverContainer {
   private static WebDriver driver;
   private String browser;
   private String isLocal;
-  private String sessionId;
-  private SauceREST sauceClient;
+  private static String sessionId;
+  private static SauceREST sauceClient;
   private String testName;
 
 
@@ -129,20 +129,11 @@ public class WebDriverContainer {
     return driver;
   }
 
-  @Rule
-  public TestRule watcher = new TestWatcher() {
-    @Override
-    protected void succeeded(Description description) {
-      if (isLocal.equalsIgnoreCase("false")) {
-        sauceClient.jobPassed(sessionId);
-      }
-    }
+  public static String getSessionId() {
+    return sessionId;
+  }
 
-    @Override
-    protected void failed(Throwable e, Description description) {
-      if (isLocal.equalsIgnoreCase("false")) {
-        sauceClient.jobFailed(sessionId);
-      }
-    }
-  };
+  public static SauceREST getSauceClient() {
+    return sauceClient;
+  }
 }

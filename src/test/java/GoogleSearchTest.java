@@ -1,11 +1,18 @@
 import com.beust.jcommander.Parameter;
+import com.saucelabs.saucerest.SauceREST;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GooglePage;
+import pages.WebDriverContainer;
 
 import java.net.MalformedURLException;
 
@@ -15,6 +22,8 @@ import java.net.MalformedURLException;
 public class GoogleSearchTest {
 
   private GooglePage google;
+  private SauceREST sauceClient;
+  private String sessionId;
 
   /**
   * This method is in charge of setting up the chrome driver for the test.
@@ -22,6 +31,8 @@ public class GoogleSearchTest {
   @BeforeMethod
   public void setup() throws MalformedURLException {
     google  = new GooglePage();
+    sauceClient = WebDriverContainer.getSauceClient();
+    sessionId = WebDriverContainer.getSessionId();
   }
 
   @Test (description = "This test is in charge of redirecting "
@@ -33,5 +44,27 @@ public class GoogleSearchTest {
 
     Assert.assertEquals(title, "perficient - Google Search");
   }
+
+  @AfterClass
+  public void closeDriver() throws MalformedURLException {
+    WebDriverContainer.getInstance().quit();
+  }
+
+  @Rule
+  public TestRule watcher = new TestWatcher() {
+    @Override
+    protected void succeeded(Description description) {
+      if (sessionId!=null && sauceClient!=null) {
+        sauceClient.jobPassed(sessionId);
+      }
+    }
+
+    @Override
+    protected void failed(Throwable e, Description description) {
+      if (sessionId!=null && sauceClient!=null) {
+        sauceClient.jobFailed(sessionId);
+      }
+    }
+  };
 
 }
