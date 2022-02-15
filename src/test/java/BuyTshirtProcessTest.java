@@ -1,4 +1,8 @@
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,7 +19,6 @@ import java.net.MalformedURLException;
  */
 public class BuyTshirtProcessTest {
   private SaucedomoLogInPage logIn;
-  private SaucedomoCompletedOrderPage completed;
 
 
 
@@ -24,7 +27,6 @@ public class BuyTshirtProcessTest {
    */
   @BeforeMethod
   public void setup() throws MalformedURLException {
-
     logIn = new SaucedomoLogInPage();
   }
 

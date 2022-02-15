@@ -4,6 +4,7 @@ import com.saucelabs.saucerest.DataCenter;
 import com.saucelabs.saucerest.SauceREST;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Rule;
+import org.junit.rules.TestRule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.openqa.selenium.MutableCapabilities;
@@ -31,8 +32,7 @@ public class WebDriverContainer {
   private SauceREST sauceClient;
   private String testName;
 
-  @Rule
-  public TestWatcher watcher = new SauceTestWatcher();
+
   /**
    * Constructor for the WebDriverContainer Class.
    */
@@ -40,7 +40,6 @@ public class WebDriverContainer {
     browser = System.getenv("browserName");
     isLocal = System.getenv("isLocal");
     driver = createDriver(browser, isLocal);
-    watcher = new SauceTestWatcher();
   }
 
   private WebDriver createDriver(String browser, String isLocal) throws MalformedURLException {
@@ -130,20 +129,20 @@ public class WebDriverContainer {
     return driver;
   }
 
-  public class SauceTestWatcher extends TestWatcher {
+  @Rule
+  public TestRule watcher = new TestWatcher() {
     @Override
     protected void succeeded(Description description) {
-      sauceClient.jobPassed(sessionId);
+      if (isLocal.equalsIgnoreCase("false")) {
+        sauceClient.jobPassed(sessionId);
+      }
     }
 
     @Override
     protected void failed(Throwable e, Description description) {
-      sauceClient.jobFailed(sessionId);
+      if (isLocal.equalsIgnoreCase("false")) {
+        sauceClient.jobFailed(sessionId);
+      }
     }
-
-    @Override
-    protected void starting(Description description) {
-      testName =description.getDisplayName();
-    }
-  }
+  };
 }
