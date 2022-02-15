@@ -69,7 +69,7 @@ public class WebDriverContainer {
     sauceOptions.setCapability("accesskey", System.getenv("saucekey"));
     sauceOptions.setCapability("name", browser + " Sauce Test");
     MutableCapabilities capabilities = new MutableCapabilities();
-    capabilities = driveconfig();
+    capabilities = remoteDriverconfig();
     capabilities.setCapability("browserVersion", "latest");
     capabilities.setCapability("platformName", "Windows 10");
     capabilities.setCapability("sauce:options", sauceOptions);
@@ -96,7 +96,7 @@ public class WebDriverContainer {
     }
   }
 
-  private MutableCapabilities driveconfig() {
+  private MutableCapabilities remoteDriverconfig() {
     switch (browser) {
       case "chrome":
         return new ChromeOptions();

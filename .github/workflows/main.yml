@@ -19,7 +19,7 @@ jobs:
     runs-on: windows-latest
     strategy:
       matrix:
-        browsers: ["chrome","firefox","edge"]
+        browsers: ["firefox","edge", "chrome"]
         environments: ["true","false"]
     steps:
     - uses: browser-actions/setup-chrome@latest
