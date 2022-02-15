@@ -44,11 +44,7 @@ public class GoogleSearchTest {
 
     Assert.assertEquals(title, "perficient - Google Search");
   }
-
-  @AfterClass
-  public void closeDriver() throws MalformedURLException {
-    WebDriverContainer.getInstance().quit();
-  }
+  
 
   @Rule
   public TestRule watcher = new TestWatcher() {
