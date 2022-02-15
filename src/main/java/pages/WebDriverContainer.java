@@ -11,6 +11,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.remote.Browser;
+import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 
@@ -71,10 +73,27 @@ public class WebDriverContainer {
     capabilities.setCapability("browserVersion", "latest");
     capabilities.setCapability("platformName", "Windows 10");
     capabilities.setCapability("sauce:options", sauceOptions);
+    String browserName = browserType();
     capabilities.setCapability("browserName", browser);
     String sauceUrl = System.getenv("sauceUrl");
     return new RemoteWebDriver(new URL(sauceUrl), capabilities);
 
+  }
+
+  private String browserType() {
+    switch (browser) {
+      case "chrome":
+        return Browser.CHROME.browserName();
+
+      case "firefox":
+        return Browser.FIREFOX.browserName();
+
+      case "edge":
+        return Browser.EDGE.browserName();
+
+      default:
+        throw new RuntimeException("Browser not defined correctly or doesnt exist");
+    }
   }
 
   private MutableCapabilities driveconfig() {
