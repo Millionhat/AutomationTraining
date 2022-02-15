@@ -74,7 +74,7 @@ public class WebDriverContainer {
     capabilities.setCapability("platformName", "Windows 10");
     capabilities.setCapability("sauce:options", sauceOptions);
     String browserName = browserType();
-    capabilities.setCapability("browserName", browser);
+    capabilities.setCapability("browserName", browserName);
     String sauceUrl = System.getenv("sauceUrl");
     return new RemoteWebDriver(new URL(sauceUrl), capabilities);
 
