@@ -7,6 +7,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GooglePage;
 
+import java.net.MalformedURLException;
+
 /**
  * Test class in charge of evaluating a google search using the Selenium Library.
  */
@@ -18,7 +20,7 @@ public class GoogleSearchTest {
   * This method is in charge of setting up the chrome driver for the test.
   */
   @BeforeMethod
-  public void setup() {
+  public void setup() throws MalformedURLException {
     google  = new GooglePage();
   }
 

@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import java.net.MalformedURLException;
+
 /**
  * Page Object for the Completed Process page.
  */
@@ -20,7 +22,7 @@ public class SaucedomoCompletedOrderPage {
   @FindBy(how = How.CLASS_NAME, using = "complete-header")
   private WebElement header;
 
-  public SaucedomoCompletedOrderPage() {
+  public SaucedomoCompletedOrderPage() throws MalformedURLException {
     driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }

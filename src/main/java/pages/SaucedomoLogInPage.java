@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import java.net.MalformedURLException;
+
 /**
  * Object class for the LogIn page.
  */
@@ -23,13 +25,13 @@ public class SaucedomoLogInPage {
   @FindBy(how = How.ID, using = "login-button")
   private WebElement loginBtn;
 
-  public SaucedomoLogInPage() {
+  public SaucedomoLogInPage() throws MalformedURLException {
     driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
 
   public SaucedomoLogInPage visitLogin() {
-    WebDriverContainer.getInstance().get("https://www.saucedemo.com/");
+    driver.get("https://www.saucedemo.com/");
     return this;
   }
 
@@ -40,7 +42,7 @@ public class SaucedomoLogInPage {
    * @param username string that contains the username of the user
    * @param password string that contains the password from the user
    */
-  public SaucedomoCatalogPage logIn(String username, String password) {
+  public SaucedomoCatalogPage logIn(String username, String password) throws MalformedURLException {
     userNameBox.sendKeys(username);
     passwordBox.sendKeys(password);
     loginBtn.click();

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import java.net.MalformedURLException;
+
 /**
  * Object class for the checkout page.
  */
@@ -25,7 +27,7 @@ public class SaucedomoCheckOutPage {
   @FindBy(how = How.ID, using = "continue")
   private WebElement continueButton;
 
-  public SaucedomoCheckOutPage() {
+  public SaucedomoCheckOutPage() throws MalformedURLException {
     driver = WebDriverContainer.getInstance();
     PageFactory.initElements(driver, this);
   }
@@ -37,7 +39,7 @@ public class SaucedomoCheckOutPage {
    * @param lastName this is a String containing the last name of the buyer
    * @param pc this is a String containing the postal code for the buyer delivery address
    */
-  public SaucedomoVerificationPage fillOutForm(String name, String lastName, String pc) {
+  public SaucedomoVerificationPage fillOutForm(String name, String lastName, String pc) throws MalformedURLException {
     personName.sendKeys(name);
     personLastName.sendKeys(lastName);
     postalCode.sendKeys(pc);
