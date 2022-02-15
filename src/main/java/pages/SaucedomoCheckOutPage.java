@@ -39,7 +39,7 @@ public class SaucedomoCheckOutPage {
    * @param pc this is a String containing the postal code for the buyer delivery address
    */
   public SaucedomoVerificationPage fillOutForm(String name,
-                                               String lastName, String pc) throws MalformedURLException {
+        String lastName, String pc) throws MalformedURLException {
     personName.sendKeys(name);
     personLastName.sendKeys(lastName);
     postalCode.sendKeys(pc);

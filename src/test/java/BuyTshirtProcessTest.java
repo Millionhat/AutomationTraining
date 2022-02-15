@@ -1,4 +1,6 @@
+
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.net.MalformedURLException;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
@@ -6,7 +8,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.SaucedomoCompletedOrderPage;
 import pages.SaucedomoLogInPage;
-import java.net.MalformedURLException;
 import pages.WebDriverContainer;
 
 

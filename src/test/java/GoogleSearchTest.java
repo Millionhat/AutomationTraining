@@ -1,11 +1,12 @@
+
 import com.beust.jcommander.Parameter;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.net.MalformedURLException;
 import org.testng.Assert;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import java.net.MalformedURLException;
 import pages.GooglePage;
 
 

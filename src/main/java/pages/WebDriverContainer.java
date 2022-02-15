@@ -1,6 +1,8 @@
 package pages;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import java.net.MalformedURLException;
+import java.net.URL;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,8 +11,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import java.net.MalformedURLException;
-import java.net.URL;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 
@@ -67,7 +67,7 @@ public class WebDriverContainer {
     sauceOptions.setCapability("accesskey", System.getenv("saucekey"));
     sauceOptions.setCapability("name", browser + " Sauce Test");
     MutableCapabilities capabilities = new MutableCapabilities();
-    capabilities.setCapability("browserVersion","latest");
+    capabilities.setCapability("browserVersion", "latest");
     capabilities.setCapability("platfomrName", "Windows 10");
     capabilities.setCapability("sauce:options", sauceOptions);
     capabilities.setCapability("browserName", browser);
