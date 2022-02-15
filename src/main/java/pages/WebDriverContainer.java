@@ -67,13 +67,30 @@ public class WebDriverContainer {
     sauceOptions.setCapability("accesskey", System.getenv("saucekey"));
     sauceOptions.setCapability("name", browser + " Sauce Test");
     MutableCapabilities capabilities = new MutableCapabilities();
+    capabilities = driveconfig();
     capabilities.setCapability("browserVersion", "latest");
-    capabilities.setCapability("platfomrName", "Windows 10");
+    capabilities.setCapability("platformName", "Windows 10");
     capabilities.setCapability("sauce:options", sauceOptions);
     capabilities.setCapability("browserName", browser);
     String sauceUrl = System.getenv("sauceUrl");
     return new RemoteWebDriver(new URL(sauceUrl), capabilities);
 
+  }
+
+  private MutableCapabilities driveconfig() {
+    switch (browser) {
+      case "chrome":
+        return new ChromeOptions();
+
+      case "firefox":
+        return new FirefoxOptions();
+
+      case "edge":
+        return new EdgeOptions();
+
+      default:
+        throw new RuntimeException("Browser not defined correctly or doesnt exist");
+    }
   }
 
   private WebDriver edgeDriverSetup() {
