@@ -9,10 +9,10 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.MalformedURLException;
 import java.net.URL;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 
 /**
  * Class in charge of storing the webDriver for easy access to the Page classes.
@@ -36,7 +36,7 @@ public class WebDriverContainer {
   }
 
   private WebDriver createDriver() throws MalformedURLException {
-    switch (isLocal){
+    switch (isLocal) {
       case "true":
         switch (browser) {
           case "chrome":
@@ -62,7 +62,6 @@ public class WebDriverContainer {
   }
 
   private WebDriver remoteDriverSetup() throws MalformedURLException {
-    String sauceUrl = System.getenv("sauceUrl");
     MutableCapabilities sauceOptions = new MutableCapabilities();
     sauceOptions.setCapability("username", System.getenv("sauceuser"));
     sauceOptions.setCapability("accesskey", System.getenv("saucekey"));
@@ -70,8 +69,9 @@ public class WebDriverContainer {
     MutableCapabilities capabilities = new MutableCapabilities();
     capabilities.setCapability("browserVersion","latest");
     capabilities.setCapability("platfomrName", "Windows 10");
-    capabilities.setCapability("sauce:options",sauceOptions);
-    capabilities.setCapability("browserName",browser);
+    capabilities.setCapability("sauce:options", sauceOptions);
+    capabilities.setCapability("browserName", browser);
+    String sauceUrl = System.getenv("sauceUrl");
     return new RemoteWebDriver(new URL(sauceUrl), capabilities);
 
   }

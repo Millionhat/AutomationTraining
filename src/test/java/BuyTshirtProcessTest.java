@@ -6,9 +6,9 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.SaucedomoCompletedOrderPage;
 import pages.SaucedomoLogInPage;
+import java.net.MalformedURLException;
 import pages.WebDriverContainer;
 
-import java.net.MalformedURLException;
 
 /**
  * Test class in charge of evaluating the process of buying a T Shirt.

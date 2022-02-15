@@ -1,5 +1,6 @@
 package pages;
 
+import java.net.MalformedURLException;
 import org.testng.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,7 +8,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import java.net.MalformedURLException;
 
 /**
  * Page Object for the Completed Process page.

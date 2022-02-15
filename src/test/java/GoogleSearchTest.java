@@ -5,9 +5,9 @@ import org.testng.Reporter;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import java.net.MalformedURLException;
 import pages.GooglePage;
 
-import java.net.MalformedURLException;
 
 /**
  * Test class in charge of evaluating a google search using the Selenium Library.

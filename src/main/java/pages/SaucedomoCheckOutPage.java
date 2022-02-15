@@ -1,12 +1,11 @@
 package pages;
 
+import java.net.MalformedURLException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
-
-import java.net.MalformedURLException;
 
 /**
  * Object class for the checkout page.
@@ -39,7 +38,8 @@ public class SaucedomoCheckOutPage {
    * @param lastName this is a String containing the last name of the buyer
    * @param pc this is a String containing the postal code for the buyer delivery address
    */
-  public SaucedomoVerificationPage fillOutForm(String name, String lastName, String pc) throws MalformedURLException {
+  public SaucedomoVerificationPage fillOutForm(String name,
+                                               String lastName, String pc) throws MalformedURLException {
     personName.sendKeys(name);
     personLastName.sendKeys(lastName);
     postalCode.sendKeys(pc);
