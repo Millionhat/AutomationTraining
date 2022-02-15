@@ -44,7 +44,7 @@ public class GoogleSearchTest {
 
     Assert.assertEquals(title, "perficient - Google Search");
   }
-  
+
 
   @Rule
   public TestRule watcher = new TestWatcher() {

@@ -76,7 +76,7 @@ public class WebDriverContainer {
     capabilities.setCapability("browserVersion", "latest");
     capabilities.setCapability("platformName", "Windows 10");
     capabilities.setCapability("browserName", browser);
-    capabilities.setCapability("name", testName);
+    capabilities.setCapability("name", ""+browser+ " Test");
     capabilities.setCapability("sauce:options", sauceOptions);
 
     String sauceUrl = System.getenv("sauceUrl");
